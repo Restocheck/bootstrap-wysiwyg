@@ -91,7 +91,7 @@
                                 }
                         } else if (document.selection) {
                                 if (selectedRange) {
-                                        selectedRange.select()
+                                        selectedRange.select();
                                 }
                         }
                 },
@@ -124,6 +124,7 @@
                                 execCommand($(this).data(options.commandRole));
                                 saveSelection();
                         });
+
                         toolbar.find('[data-toggle=dropdown]').click(restoreSelection);
 
                         toolbar.find('input[type=text][data-' + options.commandRole + ']').on('webkitspeechchange change', function () {
@@ -147,6 +148,7 @@
                                         markSelection(input, false);
                                 }
                         });
+
                         toolbar.find('input[type=file][data-' + options.commandRole + ']').change(function () {
                                 restoreSelection();
                                 if (this.type === 'file' && this.files && this.files.length > 0) {
@@ -167,25 +169,32 @@
                                 }
                         });
                 };
+                
                 options = $.extend({}, $.fn.wysiwyg.defaults, userOptions);
+                
                 toolbarBtnSelector = 'a[data-' + options.commandRole + '],button[data-' + options.commandRole + '],input[type=button][data-' + options.commandRole + ']';
+                
                 bindHotkeys(options.hotKeys);
+
                 if (options.dragAndDropImages) {
                         initFileDrops();
                 }
+
                 bindToolbar($(options.toolbarSelector), options);
+
                 editor.attr('contenteditable', true)
-                .on('mouseup keyup mouseout', function () {
-                        if (!focused) return;
-                        saveSelection();
-                        updateToolbar();
-                })
-                .on('focus', function () {
-                        focused = true;
-                })
-                .on('blur', function () {
-                        focused = false;
-                });
+                        .on('mouseup keyup mouseout', function () {
+                                if (!focused) return;
+                                saveSelection();
+                                updateToolbar();
+                        })
+                        .on('focus', function () {
+                                focused = true;
+                        })
+                        .on('blur', function () {
+                                focused = false;
+                        });
+
                 $(window).bind('touchend', function (e) {
                         var isInside = (editor.is(e.target) || editor.has(e.target).length > 0),
                         currentRange = getCurrentRange(),
@@ -195,6 +204,7 @@
                                 updateToolbar();
                         }
                 });
+
                 return this;
         };
         $.fn.wysiwyg.defaults = {
