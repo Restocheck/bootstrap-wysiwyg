@@ -14,6 +14,10 @@ Tiny bootstrap-compatible WISWYG rich text editor, based on browser execCommand,
 * Requires a modern browser (tested in Chrome 26, Firefox 19, Safari 6)
 * Supports mobile devices (tested on IOS 6 Ipad/Iphone and Android 4.1.1 Chrome)
 
+Info
+----------
+Forked from https://github.com/mindmup/bootstrap-wysiwyg because of inactivity. 
+
 Basic Usage
 -----------
 
